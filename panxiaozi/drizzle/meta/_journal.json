@@ -1,0 +1,111 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1743247538400,
+      "tag": "0000_omniscient_sway",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1743251208698,
+      "tag": "0001_white_bulldozer",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1743251450049,
+      "tag": "0002_fair_zarek",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1743251593321,
+      "tag": "0003_simple_whizzer",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1743251758831,
+      "tag": "0004_curly_sersi",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1743253061090,
+      "tag": "0005_dry_nextwave",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1743253108168,
+      "tag": "0006_classy_boom_boom",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1743426050338,
+      "tag": "0007_misty_gunslinger",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1744286369939,
+      "tag": "0008_serious_thor",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1744286409974,
+      "tag": "0009_useful_toro",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1744286944080,
+      "tag": "0010_same_vargas",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1747408529325,
+      "tag": "0011_adorable_doctor_octopus",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1747408672269,
+      "tag": "0012_overjoyed_frightful_four",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "5",
+      "when": 1747448859537,
+      "tag": "0013_clean_black_bolt",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "5",
+      "when": 1747475322210,
+      "tag": "0014_tricky_lester",
+      "breakpoints": true
+    }
+  ]
+}

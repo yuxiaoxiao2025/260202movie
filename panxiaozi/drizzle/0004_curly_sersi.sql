@@ -1,0 +1,1 @@
+ALTER TABLE `resource` ADD `is_show_home` tinyint DEFAULT 0;

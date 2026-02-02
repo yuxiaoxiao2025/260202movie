@@ -1,0 +1,1 @@
+ALTER TABLE `resource` ADD `cover` varchar(1000) DEFAULT '' NOT NULL;

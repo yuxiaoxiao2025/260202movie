@@ -1,0 +1,1 @@
+ALTER TABLE `resource` MODIFY COLUMN `updated_at` datetime DEFAULT CURRENT_TIMESTAMP;

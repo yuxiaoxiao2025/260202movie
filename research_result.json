@@ -1,0 +1,70 @@
+{
+  "github_repos": [
+    {
+      "title": "GitHub - ev-flow/quark-script: Collections of Quark Script that ...",
+      "url": "https://github.com/quark-engine/quark-script",
+      "snippet": "Finally, ask the Quark Script Agent to write and execute the Python code based on the detection process outlined above. User: Using the Quark Script API, implement the above logic in Python and save it to 'detectCWE798.py', with the rule path set to 'constructCryptoGraphicKey.json' and the sample path to 'ovaa.apk'.",
+      "score": 95
+    },
+    {
+      "title": "Quark · GitHub",
+      "url": "https://github.com/quark-database",
+      "snippet": "Simple, intuitive querying language: Quark delivers a querying language with Python-like syntax called Quark QL offering tons of instructions for selection, deletion, transformation, and editing. User-friendly table editor: Quark makes data viewing and editing painless via Quark Studio. You don't need any programming experience and experience in writing queries. Robust APIs for all popular programming languages: Adopt Quark in your next project by including Quark API.",
+      "score": 95
+    },
+    {
+      "title": "quark/quarkc/python.py at master · datawire/quark",
+      "url": "https://github.com/datawire/quark/blob/master/quarkc/python.py",
+      "snippet": ".. %(name)s documentation master file, created by Quark · · %(name)s %(version)s · =%(underline)s · · .. toctree:: :maxdepth: 2 · · %(automodules)s · · Indices and tables · ================== · * :ref:`genindex` * :ref:`modindex` * :ref:`search` \"\"\" ·",
+      "score": 80
+    },
+    {
+      "title": "Unable to return pan.quark.cn video response data · mitmproxy/mitmproxy · Discussion #7396",
+      "url": "https://github.com/mitmproxy/mitmproxy/discussions/7396",
+      "snippet": "When I use mitmproxy11 to open pan.quark.cn to play a video file, it never returns the video response data. ... Mitmproxy: 11.0.0 Python: 3.10.11 OpenSSL: OpenSSL 3.3.1 4 Jun 2024 Platform: Windows-10-10.0.19045-SP0",
+      "score": 80
+    },
+    {
+      "title": "Unable to return pan.quark.cn video response data · Issue #7395 · mitmproxy/mitmproxy",
+      "url": "https://github.com/mitmproxy/mitmproxy/issues/7395",
+      "snippet": "December 16, 2024 - When I use mitmproxy11 to open pan.quark.cn to play a video file, it never returns the video response data. ... Mitmproxy: 11.0.0 Python: 3.10.11 OpenSSL: OpenSSL 3.3.1 4 Jun 2024 Platform: Windows-10-10.0.19045-SP0",
+      "score": 80
+    }
+  ],
+  "web_resources": [
+    {
+      "title": "GitHub - Cp0204/quark-auto-save: 夸克网盘签到、自动转存、命名整理、发推送提醒和刷新媒体库一条龙",
+      "url": "https://github.com/Cp0204/quark-auto-save",
+      "snippet": "夸克网盘签到、自动转存、命名整理、发推送提醒和刷新媒体库一条龙. Contribute to Cp0204/quark-auto-save development by creating an account on GitHub.",
+      "score": 80
+    },
+    {
+      "title": "GitHub - hmjz100/LinkSwift: 一个基于 JavaScript 的网盘文件下载地址获取工具。基于【网盘直链下载助手】修改 ，支持 百度网盘 / 阿里云盘 / 中国移动云盘 / 天翼云盘 / 迅雷云盘 / 夸克网盘 / UC网盘 / 123云盘 八大网盘",
+      "url": "https://github.com/hmjz100/LinkSwift",
+      "snippet": "支持 百度网盘/阿里云盘/中国移动云盘/天翼云盘/迅雷云盘/夸克网盘/UC网盘/123云盘 八大网盘，相比较原脚本，增加了更多功能~ 这个脚本只有一个人在修改~ 如果喜欢的话还请留个 Star 哦~ ... v1.1.2.1（基于原版 v6.2.7） 本脚本目前仅在 Github、Gitee、脚本猫脚本站 与 OpenUserJS 发布； 如果您是在其他渠道获取到本脚本的，安装后所带来的问题作者概不负责。 ... 1、新增 - API 下载的推送到 IDM 功能； （感谢 Night Stars 的帮助） 2、修复 - 复制 Aria2、cURL 命令行错误。",
+      "score": 80
+    },
+    {
+      "title": "GitHub - fre123-com/yz_pansearch_api: 夸克|百度|迅雷|阿里 网盘搜索引擎插件API",
+      "url": "https://github.com/fre123-com/yz_pansearch_api",
+      "snippet": "夸克|百度|迅雷|阿里 网盘搜索引擎插件API. Contribute to fre123-com/yz_pansearch_api development by creating an account on GitHub.",
+      "score": 80
+    },
+    {
+      "title": "GitHub - chenqimiao/quarkdrive-webdav: 夸克网盘 WebDAV 服务",
+      "url": "https://github.com/chenqimiao/quarkdrive-webdav",
+      "snippet": "夸克网盘 WebDAV 服务. Contribute to chenqimiao/quarkdrive-webdav development by creating an account on GitHub.",
+      "score": 80
+    },
+    {
+      "title": "夸克网盘上传接口实现_夸克网盘api-CSDN博客",
+      "url": "https://blog.csdn.net/fghjbjhgb/article/details/145800274",
+      "snippet": "February 22, 2025 - AList作为一款多网盘聚合管理工具，当前版本尚未支持夸克网盘的分享资源直接访问功能。而夸克网盘用户群体中存在大量通过分享链接传播的资源，用户需要将这些资源转存到个人空间后才能进行播放或下载操作。这种操作模式存在两个显著痛点： 1. 手动转存流程繁琐，需要多次页面跳转 2. 无法实现自动化批量处理 ## 技术实现原理 通过分析夸克网盘的API调用链，可以发现其分享转存机制采用异步任务模式，主要分...",
+      "score": 80
+    }
+  ],
+  "meta": {
+    "timestamp": 1770019522.1798918,
+    "strategy": "MCP Search (Zhipu webSearchPrime)"
+  }
+}

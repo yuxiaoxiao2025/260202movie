@@ -1,0 +1,7 @@
+User-agent:*
+Disallow: /resource?*
+
+User-agent: *
+Allow: /
+
+Sitemap: https://pan.xiaozi.cc/sitemap.xml

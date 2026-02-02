@@ -1,0 +1,50 @@
+# 二进制文件
+*.exe
+*.dll
+*.so
+*.dylib
+pansou.exe
+pansou
+test_verifier.exe
+
+# 测试二进制
+*.test
+
+# 缓存文件
+cache/
+*.cache
+
+# 数据库
+*.db
+*.sqlite
+*.sqlite3
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# IDE配置
+.vscode/
+.idea/
+*.iml
+
+# Go modules
+go.sum
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 环境变量
+.env
+.env.local
+
+# 构建输出
+dist/
+build/

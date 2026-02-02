@@ -1,0 +1,1 @@
+ALTER TABLE `resource` ADD `pinyin` varchar(2000) NOT NULL;
