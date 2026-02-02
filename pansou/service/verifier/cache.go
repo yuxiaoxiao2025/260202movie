@@ -38,13 +38,24 @@ func NewMemoryCache() *MemoryCache {
 // Get 获取缓存
 func (mc *MemoryCache) Get(key string) *VerificationResult {
 	mc.mu.RLock()
-	defer mc.mu.RUnlock()
-
 	entry, exists := mc.store[key]
-	if !exists || time.Now().After(entry.ExpireAt) {
+
+	if !exists {
+		mc.mu.RUnlock()
 		return nil
 	}
-	return entry.Result
+
+	// 检查是否过期
+	if time.Now().After(entry.ExpireAt) {
+		mc.mu.RUnlock()
+		// 异步删除过期条目，避免缓存穿透
+		go mc.Delete(key)
+		return nil
+	}
+
+	result := entry.Result
+	mc.mu.RUnlock()
+	return result
 }
 
 // Set 设置缓存

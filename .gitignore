@@ -3,9 +3,11 @@
 *.dll
 *.so
 *.dylib
-pansou.exe
-pansou
-test_verifier.exe
+
+# 特定二进制文件
+pansou/pansou.exe
+pansou/pansou
+pansou/test_verifier.exe
 
 # 测试二进制
 *.test

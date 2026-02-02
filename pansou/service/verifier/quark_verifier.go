@@ -2,8 +2,11 @@ package verifier
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"net/url"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -99,7 +102,7 @@ func (qv *QuarkVerifier) VerifyLink(linkURL string) (*VerificationResult, error)
 			Message:   "网络请求失败",
 		}, nil
 	}
-	defer resp.Body.Close()
+	defer resp.Body.Close() // 安全：err检查在defer之前
 
 	// 4. 分析响应状态码
 	result := &VerificationResult{
@@ -117,15 +120,21 @@ func (qv *QuarkVerifier) VerifyLink(linkURL string) (*VerificationResult, error)
 }
 
 // isQuarkLink 检查是否为夸克网盘链接
-func (qv *QuarkVerifier) isQuarkLink(url string) bool {
+func (qv *QuarkVerifier) isQuarkLink(rawURL string) bool {
+	// 解析URL
+	u, err := url.Parse(rawURL)
+	if err != nil {
+		return false
+	}
+
+	// 检查域名
 	quarkDomains := []string{
 		"pan.quark.cn",
-		"pan.quark.cn/s/",
 		"quark.cn",
 	}
 
 	for _, domain := range quarkDomains {
-		if strings.Contains(url, domain) {
+		if u.Host == domain || strings.HasSuffix(u.Host, "."+domain) {
 			return true
 		}
 	}
@@ -134,8 +143,8 @@ func (qv *QuarkVerifier) isQuarkLink(url string) bool {
 
 // isValidStatusCode 判断状态码是否有效
 func (qv *QuarkVerifier) isValidStatusCode(statusCode int) bool {
-	// 2xx 和 3xx 状态码认为是有效的
-	return (statusCode >= 200 && statusCode < 400)
+	// 只接受2xx状态码（200-299），3xx重定向可能指向错误页
+	return (statusCode >= 200 && statusCode < 300)
 }
 
 // getStatusMessage 获取状态描述
@@ -161,23 +170,32 @@ func (qv *QuarkVerifier) getStatusMessage(code int) string {
 // VerifyBatch 批量验证链接（带限流）
 func (qv *QuarkVerifier) VerifyBatch(urls []string) []*VerificationResult {
 	results := make([]*VerificationResult, len(urls))
+	var wg sync.WaitGroup
 	semaphore := make(chan struct{}, 5) // 最多5个并发
 
-	for i, url := range urls {
+	for i, u := range urls {
+		wg.Add(1)
 		semaphore <- struct{}{}
-		go func(idx int, u string) {
+		go func(idx int, url string) {
+			defer wg.Done()
 			defer func() { <-semaphore }()
-			result, _ := qv.VerifyLink(u) // 忽略错误，使用result
+
+			result, err := qv.VerifyLink(url)
+			if err != nil {
+				log.Printf("[QuarkVerifier] 验证失败: %s, 错误: %v", url, err)
+				result = &VerificationResult{
+					URL:       url,
+					Valid:     false,
+					CheckedAt: time.Now(),
+					Message:   "验证异常",
+				}
+			}
 			results[idx] = result
 			time.Sleep(500 * time.Millisecond) // 避免请求过快
-		}(i, url)
+		}(i, u)
 	}
 
-	// 等待所有验证完成
-	for i := 0; i < cap(semaphore); i++ {
-		semaphore <- struct{}{}
-	}
-
+	wg.Wait() // 等待所有goroutine完成
 	return results
 }
 

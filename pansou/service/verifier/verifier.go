@@ -32,8 +32,8 @@ func NewVerificationService(config VerificationConfig) *VerificationService {
 
 // VerifyLink 验证单个链接
 func (vs *VerificationService) VerifyLink(url string) (*VerificationResult, error) {
-	// 检查限流
-	if !vs.rateLimiter.Allow(url) {
+	// 检查限流（使用全局限流key）
+	if !vs.rateLimiter.Allow("global") {
 		log.Printf("[VerificationService] 请求过于频繁，跳过验证: %s", url)
 		return &VerificationResult{
 			URL:       url,
