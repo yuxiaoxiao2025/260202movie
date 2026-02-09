@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美剧资源搜索</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        .result-item {
+            background: #f5f5f5;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        .result-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .result-link {
+            color: #667eea;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>美剧资源搜索</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="输入影片名称，如：Y计划">
+            <button onclick="search()">搜索</button>
+        </div>
+        <div id="results"></div>
+    </div>
+    
+    <script>
+        async function search() {
+            const keyword = document.getElementById('searchInput').value;
+            if (!keyword) {
+                alert('请输入影片名称');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>正在搜索...</p>';
+            
+            try {
+                const response = await fetch('/api/search', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ keyword: keyword })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success && data.results) {
+                    let html = '';
+                    data.results.forEach((item, i) => {
+                        html += `
+                            <div class="result-item">
+                                <div class="result-title">${i + 1}. ${item.title}</div>
+                                <div style="margin-bottom: 10px;">
+                                    ${item.year ? `<span style="background: #e3f2fd; padding: 3px 10px; border-radius: 15px; margin-right: 5px;">${item.year}年</span>` : ''}
+                                    ${item.resource_type === 'new' ? '<span style="background: #e8f5e9; padding: 3px 10px; border-radius: 15px;">新剧</span>' : ''}
+                                    <span style="background: #f3e5f5; padding: 3px 10px; border-radius: 15px;">${item.source_name}</span>
+                                </div>
+                                <div>
+                                    ${item.quark_links.map(link => `
+                                        <div style="margin: 5px 0;">
+                                            <a href="${link}" target="_blank" class="result-link">${link}</a>
+                                            <button class="copy-btn" onclick="copy('${link}')">复制</button>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    });
+                    resultsDiv.innerHTML = html || '<p>未找到资源</p>';
+                } else {
+                    resultsDiv.innerHTML = '<p>未找到资源</p>';
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<p style="color: red;">搜索失败: ${error.message}</p>`;
+            }
+        }
+        
+        async function copy(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                alert('已复制');
+            } catch (err) {
+                prompt('复制链接', text);
+            }
+        }
+    </script>
+</body>
+</html>

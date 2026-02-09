@@ -1,0 +1,137 @@
+# 2025新剧追踪器配置
+# 版本: v0.1.0-2025NewShows
+# 说明: 本配置区分"追新剧"（模式A）和"补经典"（模式B）
+
+# ============================================
+# 核心配置
+# ============================================
+core:
+  # 新剧年份阈值（2024年及以后视为新剧）
+  threshold: 2024
+  
+  # 当前年份（用于验证）
+  current_year: 2025
+  
+  # 工作模式
+  # mode_a: 追新剧（监控2025-2026新剧更新）- MVP已实现
+  # mode_b: 补经典（搜索存量经典美剧资源）- 预留接口
+  mode: mode_a
+
+# ============================================
+# 模式A：追新剧配置
+# ============================================
+mode_a:
+  name: "追新剧"
+  description: "监控2025-2026年美剧更新"
+  
+  # 监控站点配置
+  sites:
+    # 站点1: 网盘资源避难所
+    - name: "suenen"
+      type: "suenen"
+      url: "https://suenen.com"
+      enabled: true
+      pages: 3  # 每次抓取页数
+      
+    # 站点2: 腾讯频道（需要实际频道URL）
+    - name: "qqpd"
+      type: "qqpd"
+      url: "https://pd.qq.com/g/example"  # 替换为实际频道URL
+      enabled: false  # 默认禁用，需要配置真实URL
+      
+  # 输出配置
+  output:
+    filename: "2025新剧追踪.md"
+    format: "markdown"
+    
+  # 过滤配置
+  filter:
+    # 只保留的年份范围
+    min_year: 2025
+    max_year: 2026
+    
+    # 必须包含的关键词（可选）
+    include_keywords: []
+    
+    # 排除的关键词（可选）
+    exclude_keywords: ["预告", "花絮", "幕后"]
+
+# ============================================
+# 模式B：补经典配置（预留接口）
+# ============================================
+mode_b:
+  name: "补经典"
+  description: "搜索存量经典美剧资源"
+  
+  # 预留：经典剧搜索站点
+  sites:
+    - name: "suenen_classic"
+      type: "suenen"
+      url: "https://suenen.com"
+      enabled: false
+      
+  # 预留：经典剧年份范围
+  filter:
+    min_year: 1990
+    max_year: 2023
+    
+  # 预留：经典剧清单
+  classic_shows:
+    - "绝命毒师"
+    - "权力的游戏"
+    - "老友记"
+    - "火线"
+    - "风骚律师"
+
+# ============================================
+# 请求配置
+# ============================================
+request:
+  # 请求间隔（秒）- 基础反爬
+  delay: 5
+  
+  # 超时时间（秒）
+  timeout: 30
+  
+  # 重试次数
+  retries: 3
+  
+  # 请求头
+  headers:
+    User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    Accept-Language: "zh-CN,zh;q=0.9"
+
+# ============================================
+# 通知配置（MVP简化，预留扩展）
+# ============================================
+notification:
+  enabled: false
+  
+  # 预留：Webhook通知
+  webhook:
+    url: ""
+    method: "POST"
+    
+  # 预留：邮件通知
+  email:
+    smtp_server: ""
+    smtp_port: 587
+    username: ""
+    password: ""
+    to: ""
+
+# ============================================
+# 存储配置
+# ============================================
+storage:
+  # 数据存储方式
+  # memory: 内存（MVP默认）
+  # json: JSON文件
+  # sqlite: SQLite数据库（预留）
+  type: "memory"
+  
+  # JSON文件路径（当type=json时）
+  json_path: "data/new_shows.json"
+  
+  # 去重数据库
+  dedup_file: "data/seen_links.txt"
